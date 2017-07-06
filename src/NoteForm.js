@@ -19,7 +19,7 @@ class NoteForm extends Component {
                             placeholder="Title your note"
                         />
                     </p>
-                <textarea name="body"></textarea>
+                    <textarea name="body"></textarea>
                 </form>
             </div>
         )
