@@ -1,8 +1,11 @@
 import React from 'react'
 
 const Note = (props) => {
+    const handleClick = () => {
+        console.log('clicked!')
+    }
     return(
-        <a className="active">
+        <a onClick={handleClick}>
             <li>
               <div className="note">
                 <div className="note-title">
