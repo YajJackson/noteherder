@@ -95,3 +95,6 @@
   padding: 1em;
   text-decoration: none;
 }
+::-webkit-scrollbar { 
+    display: none; 
+}
