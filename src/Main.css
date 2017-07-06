@@ -1,0 +1,7 @@
+.Main {
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
