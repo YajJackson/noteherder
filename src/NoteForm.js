@@ -4,6 +4,8 @@ import './NoteForm.css'
 
 class NoteForm extends Component {
   render() {
+    const { currentNote } = this.props
+    
     return (
       <div className="NoteForm">
         <div className="form-actions">
@@ -17,12 +19,12 @@ class NoteForm extends Component {
               type="text"
               name="title"
               placeholder="Title your note"
-              value={this.props.currentNote.title}
+              value={currentNote.title}
             />
           </p>
           <textarea 
             name="body"
-            value = {this.props.currentNote.body}
+            value = {currentNote.body}
           ></textarea>
         </form>
       </div>
