@@ -8,6 +8,7 @@
     "react-dom": "^15.6.1"
   },
   "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "react-scripts": "1.0.10"
   },
   "scripts": {

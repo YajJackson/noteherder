@@ -21,11 +21,15 @@ class App extends Component {
           body: 'Exmaple text two.'
         },
       },
-      currentNote: {
-        id: null,
-        title: '',
-        body: '',
-      }
+      currentNote: this.blankNote(),
+    }
+  }
+
+  blankNote = () => {
+    return {
+      id: null,
+      title: '',
+      body: '',
     }
   }
 
@@ -33,13 +37,26 @@ class App extends Component {
     this.setState({ currentNote: note })
   }
 
+  resetCurrentNote = () => {
+    this.setCurrentNote(this.blankNote())
+  }
+
   render() {
+    const actions = {
+      setCurrentNote: this.setCurrentNote,
+      resetCurrentNote: this.resetCurrentNote,
+    }
+
+    const noteData = {
+      notes: this.state.notes,
+      currentNote: this.state.currentNote,
+    }
+    
     return (
       <div className="App">
         <Main 
-          notes={this.state.notes} 
-          currentNote={this.state.currentNote}
-          setCurrentNote={this.setCurrentNote}
+          {...actions}
+          {...noteData}
         />
       </div>
     )
