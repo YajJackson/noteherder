@@ -9,18 +9,7 @@ class App extends Component {
     super()
 
     this.state = {
-      notes: {
-        'note-1': {
-          id: 'note-1',
-          title: 'Note Title',
-          body: 'Some exmaple text here.',
-        },
-        'note-2': {
-          id: 'note-2',
-          title: 'Note Title 2',
-          body: 'Exmaple text two.'
-        },
-      },
+      notes: {},
       currentNote: this.blankNote(),
     }
   }
@@ -41,10 +30,23 @@ class App extends Component {
     this.setCurrentNote(this.blankNote())
   }
 
+  saveNote = (note) => {
+    const notes = {...this.state.notes}
+    if(!note.id){
+      note.id = Date.now();
+    }
+    notes[note.id] = note
+    this.setState({ 
+      notes,
+      currentNote: note
+    }) // == this.setState({ notes: notes })
+  }
+
   render() {
     const actions = {
       setCurrentNote: this.setCurrentNote,
       resetCurrentNote: this.resetCurrentNote,
+      saveNote: this.saveNote,
     }
 
     const noteData = {
