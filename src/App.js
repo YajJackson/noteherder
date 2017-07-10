@@ -30,7 +30,7 @@ class App extends Component {
     )
   }
   
-  componentDidMount = () => {
+  syncNotes = () => {
     base.syncState(
       'notes',
       {
@@ -75,13 +75,16 @@ class App extends Component {
     this.setState({ notes })
     this.resetCurrentNote()
   }
-  
+
   signedIn = () => {
     return this.state.uid
   }
 
   handleAuth = (user) => {
-    this.setState({uid: user.uid})
+    this.setState(
+      {uid: user.uid},
+      this.syncNotes
+    )
   }
 
   signOut = () =>{
