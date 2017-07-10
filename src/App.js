@@ -88,7 +88,7 @@ class App extends Component {
   }
 
   handleAuth = (user) => {
-    localStorage.setItem('uid', user.uId)
+    localStorage.setItem('uid', user.uid)
     this.setState(
       {uid: user.uid},
       this.syncNotes
