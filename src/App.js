@@ -17,6 +17,7 @@ class App extends Component {
   }
 
   componentWillMount = () => {
+    this.getUserFromLocalStorage()
     auth.onAuthStateChanged(
       (user) => {
         if(user){
@@ -29,10 +30,16 @@ class App extends Component {
       }
     )
   }
+
+  getUserFromLocalStorage = () => {
+    const uid = localStorage.getItem('uid')
+    if(!uid) return
+    this.setState({ uid })
+  }
   
   syncNotes = () => {
-    this.bindingRef = base.syncState( // dumb question why does assigning this.bindingRef not affect functionality, is anything being returned here
-      `${this.state.uid}/notes`,
+    this.bindingRef = base.syncState(
+      `notes/${this.state.uid}`,
       {
         context: this, // what object the state is on
         state: 'notes', // which property to sync
@@ -81,6 +88,7 @@ class App extends Component {
   }
 
   handleAuth = (user) => {
+    localStorage.setItem('uid', user.uId)
     this.setState(
       {uid: user.uid},
       this.syncNotes
@@ -88,6 +96,7 @@ class App extends Component {
   }
 
   handleUnauth = () => {
+    localStorage.removeItem('uid')
     if(this.bindingRef) {
       base.removeBinding(this.bindingRef)
     }
