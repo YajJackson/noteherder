@@ -24,14 +24,14 @@ class App extends Component {
           this.handleAuth(user)
         } else {
           // sign out
-          this.setState({ uid: null })
+          this.handleUnauth()
         }
       }
     )
   }
   
   syncNotes = () => {
-    base.syncState(
+    this.bindingRef = base.syncState( // dumb question why does assigning this.bindingRef not affect functionality, is anything being returned here
       `${this.state.uid}/notes`,
       {
         context: this, // what object the state is on
@@ -85,6 +85,18 @@ class App extends Component {
       {uid: user.uid},
       this.syncNotes
     )
+  }
+
+  handleUnauth = () => {
+    if(this.bindingRef) {
+      base.removeBinding(this.bindingRef)
+    }
+
+    this.setState({ 
+      uid: null,
+      notes: {},
+      currentNote: this.blankNote(),
+    })
   }
 
   signOut = () =>{
