@@ -12,6 +12,7 @@ const Main = (props) => {
       currentNote: props.currentNote,
       saveNote: props.saveNote,
       removeNote: props.removeNote,
+      firebaseSynced: props.firebaseSynced,
     }
     return (
         <div className='Main'>
