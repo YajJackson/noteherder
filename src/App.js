@@ -12,7 +12,6 @@ class App extends Component {
 
     this.state = {
       notes: {},
-      currentNote: this.blankNote(),
       uid: null,
     }
   }
@@ -56,32 +55,19 @@ class App extends Component {
     }
   }
 
-  setCurrentNote = (note) => {
-    this.setState({ currentNote: note })
-  }
-
-  resetCurrentNote = () => {
-    this.setCurrentNote(this.blankNote())
-  }
-
   saveNote = (note) => {
     const notes = {...this.state.notes}
     if(!note.id){
       note.id = Date.now();
     }
     notes[note.id] = note
-    this.setState({ 
-      notes,
-      currentNote: note
-    })
+    this.setState({ notes })
   }
 
   removeCurrentNote = () => {
     const notes = {...this.state.notes}
-    notes[this.state.currentNote.id] = null
     
     this.setState({ notes })
-    this.resetCurrentNote()
   }
 
   signedIn = () => {
@@ -105,7 +91,6 @@ class App extends Component {
     this.setState({ 
       uid: null,
       notes: {},
-      currentNote: this.blankNote(),
     })
   }
 
@@ -116,15 +101,12 @@ class App extends Component {
 
   renderMain() {
     const actions = {
-      resetCurrentNote: this.resetCurrentNote,
       saveNote: this.saveNote,
-      removeCurrentNote: this.removeCurrentNote,
       signOut: this.signOut,
     }
 
     const noteData = {
       notes: this.state.notes,
-      currentNote: this.state.currentNote,
     }
 
     return(
