@@ -71,8 +71,11 @@ class App extends Component {
     }
   }
 
-  removeCurrentNote = () => {
+  removeNote = (note) => {
     const notes = {...this.state.notes}
+    notes[note.id] = null
+
+    this.props.history.push('/notes')
     
     this.setState({ notes })
   }
@@ -110,6 +113,7 @@ class App extends Component {
     const actions = {
       saveNote: this.saveNote,
       signOut: this.signOut,
+      removeNote: this.removeNote,
     }
 
     const noteData = {
