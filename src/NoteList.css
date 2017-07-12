@@ -55,15 +55,20 @@
 .NoteList ul#notes a:first-of-type li .note {
   border-top: none;
 }
-.NoteList ul#notes li:hover {
+.NoteList ul#notes li:hover,
+.NoteList ul#notes a.active li {
   background-color: #008bf8;
 }
 .NoteList ul#notes li:hover,
-.NoteList ul#notes li:hover .note * {
-  color: #fff!important;
+.NoteList ul#notes li:hover .note *,
+.NoteList ul#notes a.active li,
+.NoteList ul#notes a.active li .note-body *,
+.NoteList ul#notes a.active li .note-title  {
+  color: #fff !important;
   text-decoration: none !important;
 }
-.NoteList ul#notes li:hover .note {
+.NoteList ul#notes li:hover .note,
+.NoteList ul#notes a.active li {
   border-color: transparent;
 }
 .NoteList ul#notes li .note-title {
@@ -82,10 +87,10 @@
   margin-top: .5rem;
 }
 .NoteList ul#notes li .note-body * {
-  font-size: 1em!important;
-  margin: 0!important;
-  padding: 0!important;
-  color: #999!important;
+  font-size: 1em !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #999 !important;
   background: none;
   border: none;
 }
@@ -94,7 +99,4 @@
   height: 100px;
   padding: 1em;
   text-decoration: none;
-}
-::-webkit-scrollbar { 
-    display: none; 
 }
