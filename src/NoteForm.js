@@ -13,9 +13,15 @@ class NoteForm extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    const nextId = nextProps.match.params.id
-    const note = nextProps.notes[nextId] || this.blankNote()
+    const idFromUrl = nextProps.match.params.id
+    const note = nextProps.notes[idFromUrl] || this.blankNote()
 
+    const noteNotFound = idFromUrl && !note.id
+
+    if(noteNotFound){
+      this.props.history.push('/notes')
+    }
+    
     let editorValue = this.state.editorValue
     if (editorValue.toString('html') !== note.body) {
       editorValue = RichTextEditor.createValueFromString(note.body, 'html')
