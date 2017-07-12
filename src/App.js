@@ -116,7 +116,6 @@ class App extends Component {
 
   renderMain() {
     const actions = {
-      setCurrentNote: this.setCurrentNote,
       resetCurrentNote: this.resetCurrentNote,
       saveNote: this.saveNote,
       removeCurrentNote: this.removeCurrentNote,
